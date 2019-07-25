@@ -49,7 +49,7 @@ namespace Wyrażenia
         protected Wyrażenie arg2;
 
         protected Fun2(string naz, Wyrażenie w1, Wyrażenie w2) : base(naz, w1)
-        { arg1 = w2 ?? throw new ArgumentNullException("referencja do pustego wyrażenia"); }
+        { arg2 = w2 ?? throw new ArgumentNullException("referencja do pustego wyrażenia"); }
         public override string ToString()
         { return nazwa + " (" + arg1 + ", " + arg2 + ")"; }
     }
@@ -301,7 +301,7 @@ namespace Wyrażenia
         {
             Zmienna.Nowa("r", 10);
             Zmienna.Nowa("s", 2);
-            Zmienna.Ustaw("s", 5); // zmiana wartości z 2 na 5
+            Zmienna.Ustaw("s", 3); // zmiana wartości z 2 na 5
             Stała.DodajStałą("Euler", 0.5772156649); //dodanie nowej stałej
 
             Wyrażenie PoleKoła = new Mnóż(new Stała("pi"),
@@ -317,6 +317,8 @@ namespace Wyrażenia
             Wyrażenie Przeciwność = new Przeciwny(new Zmienna("r"));
             Wyrażenie NowaStała = new Dodaj(new Liczba(1),new Stała ("Euler"));
             Wyrażenie WartośćBezwzględna = new Abs(new Zmienna("r"));
+            Wyrażenie Rnd = new Rnd();
+            Wyrażenie Logarytm = new Logarytm(new Zmienna("r"), new Zmienna("s"));
 
             Console.Out.WriteLine("{0} = {1}", PoleKoła.ToString(), PoleKoła.Oblicz());
             Console.Out.WriteLine("{0} = {1}", Dodawanie.ToString(), Dodawanie.Oblicz());
@@ -328,6 +330,8 @@ namespace Wyrażenia
             Console.Out.WriteLine("{0} = {1}", Przeciwność.ToString(), Przeciwność.Oblicz());
             Console.Out.WriteLine("{0} = {1}", NowaStała.ToString(), NowaStała.Oblicz());
             Console.Out.WriteLine("{0} = {1}", WartośćBezwzględna.ToString(), WartośćBezwzględna.Oblicz());
+            Console.Out.WriteLine("{0} = {1}", Rnd.ToString(), Rnd.Oblicz());
+            Console.Out.WriteLine("{0} = {1}", Logarytm.ToString(), Logarytm.Oblicz());
 
             Console.ReadKey();
         }
